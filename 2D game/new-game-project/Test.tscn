@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://4xlktetvpjya"]
+[gd_scene load_steps=6 format=3 uid="uid://4xlktetvpjya"]
 
 [ext_resource type="Texture2D" uid="uid://oruhxbsdhfnj" path="res://Textures/Backdrops/background.png" id="1_myinc"]
+[ext_resource type="Script" uid="uid://d3f6hijbyrk1g" path="res://scripts/character/mainControls.gd" id="2_2au82"]
+[ext_resource type="Script" uid="uid://c2chxjtkcelti" path="res://scripts/environment/collideTest.gd" id="2_8tn2x"]
+[ext_resource type="Texture2D" uid="uid://s61joq7g8n3g" path="res://Textures/Player Sprites/main.png" id="2_njov2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2au82"]
+size = Vector2(95, 96)
 
 [node name="Node2D" type="Node2D"]
 
@@ -12,12 +18,16 @@ texture = ExtResource("1_myinc")
 zoom = Vector2(1.62, 1.62)
 
 [node name="bottomRight" type="Area2D" parent="."]
+disable_mode = 1
+script = ExtResource("2_8tn2x")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bottomRight"]
+physics_interpolation_mode = 1
 position = Vector2(200, 200)
 polygon = PackedVector2Array(-1, -13, 0, -81, -11, -80, -27, -76, -36, -69, -59, -53, -72, -38, -76, -25, -76, 0, -1, -1)
 
 [node name="BottomLeft" type="Area2D" parent="."]
+script = ExtResource("2_8tn2x")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottomLeft"]
 position = Vector2(-200, 200)
@@ -27,8 +37,34 @@ polygon = PackedVector2Array(11, 0, 52, 1, 52, -28, 47, -44, 44, -59, 39, -73, 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Top Right"]
 position = Vector2(200, -200)
+polygon = PackedVector2Array(-1, 14, 0, 129, -5, 128, -16, 123, -30, 118, -38, 114, -47, 107, -50, 94, -54, 86, -71, 70, -74, 62, -78, 59, -83, 50, -87, 45, -91, 38, -94, 34, -103, 22, -107, 18, -110, 9, -114, 2, -114, 0, -1, 0)
 
 [node name="Top Left" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Top Left"]
 position = Vector2(-200, -200)
+polygon = PackedVector2Array(0, 0, 1, 49, 6, 50, 37, 45, 57, 40, 71, 35, 87, 31, 101, 27, 118, 22, 128, 18, 140, 15, 141, 7, 148, 0)
+
+[node name="MainRigidBody" type="RigidBody2D" parent="."]
+position = Vector2(-150, 0)
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 5
+constant_force = Vector2(0, 10)
+script = ExtResource("2_2au82")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRigidBody"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_2au82")
+
+[node name="Sprite2D" type="Sprite2D" parent="MainRigidBody"]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_njov2")
+
+[connection signal="body_entered" from="bottomRight" to="bottomRight" method="_on_body_entered"]
+[connection signal="body_entered" from="bottomRight" to="bottomRight/CollisionPolygon2D" method="_on_bottom_right_body_entered"]
+[connection signal="body_entered" from="BottomLeft" to="bottomRight" method="_on_bottom_left_body_entered"]
+[connection signal="body_entered" from="BottomLeft" to="BottomLeft" method="_on_body_entered"]
+[connection signal="body_entered" from="MainRigidBody" to="MainRigidBody" method="_on_body_entered"]
+[connection signal="ready" from="MainRigidBody" to="MainRigidBody" method="_on_ready"]
