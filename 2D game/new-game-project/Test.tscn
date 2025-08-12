@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://4xlktetvpjya"]
+[gd_scene load_steps=5 format=3 uid="uid://4xlktetvpjya"]
 
 [ext_resource type="Texture2D" uid="uid://oruhxbsdhfnj" path="res://Textures/Backdrops/background.png" id="1_myinc"]
-[ext_resource type="Script" uid="uid://d3f6hijbyrk1g" path="res://scripts/character/mainControls.gd" id="2_2au82"]
 [ext_resource type="Script" uid="uid://c2chxjtkcelti" path="res://scripts/environment/collideTest.gd" id="2_8tn2x"]
 [ext_resource type="Texture2D" uid="uid://s61joq7g8n3g" path="res://Textures/Player Sprites/main.png" id="2_njov2"]
 
@@ -45,19 +44,14 @@ polygon = PackedVector2Array(-1, 14, 0, 129, -5, 128, -16, 123, -30, 118, -38, 1
 position = Vector2(-200, -200)
 polygon = PackedVector2Array(0, 0, 1, 49, 6, 50, 37, 45, 57, 40, 71, 35, 87, 31, 101, 27, 118, 22, 128, 18, 140, 15, 141, 7, 148, 0)
 
-[node name="MainRigidBody" type="RigidBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(-150, 0)
-gravity_scale = 0.0
-contact_monitor = true
-max_contacts_reported = 5
-constant_force = Vector2(0, 10)
-script = ExtResource("2_2au82")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRigidBody"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_2au82")
 
-[node name="Sprite2D" type="Sprite2D" parent="MainRigidBody"]
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_njov2")
@@ -66,5 +60,3 @@ texture = ExtResource("2_njov2")
 [connection signal="body_entered" from="bottomRight" to="bottomRight/CollisionPolygon2D" method="_on_bottom_right_body_entered"]
 [connection signal="body_entered" from="BottomLeft" to="bottomRight" method="_on_bottom_left_body_entered"]
 [connection signal="body_entered" from="BottomLeft" to="BottomLeft" method="_on_body_entered"]
-[connection signal="body_entered" from="MainRigidBody" to="MainRigidBody" method="_on_body_entered"]
-[connection signal="ready" from="MainRigidBody" to="MainRigidBody" method="_on_ready"]
