@@ -1,12 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://4xlktetvpjya"]
+[gd_scene load_steps=5 format=3 uid="uid://4xlktetvpjya"]
 
 [ext_resource type="Texture2D" uid="uid://oruhxbsdhfnj" path="res://Textures/Backdrops/background.png" id="1_myinc"]
-[ext_resource type="Texture2D" uid="uid://s61joq7g8n3g" path="res://Textures/Player Sprites/main.png" id="2_njov2"]
-[ext_resource type="Script" uid="uid://dbucygy3ayjlk" path="res://scripts/character/mainControls.gd" id="3_8tn2x"]
+[ext_resource type="PackedScene" uid="uid://cphy6265716fm" path="res://resources/Main.tscn" id="2_2au82"]
 [ext_resource type="Script" uid="uid://b2p6lvp2hs4wo" path="res://scripts/environment/Screenmove.gd" id="4_8tn2x"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2au82"]
-size = Vector2(95, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq4fw"]
 size = Vector2(20, 232)
@@ -55,25 +51,14 @@ disable_mode = 1
 position = Vector2(-200, -200)
 polygon = PackedVector2Array(0, 0, 1, 49, 6, 50, 37, 45, 57, 40, 71, 35, 87, 31, 101, 27, 118, 22, 128, 18, 140, 15, 141, 7, 148, 0)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_2au82")]
 position = Vector2(-150, 0)
-script = ExtResource("3_8tn2x")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-visible = false
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_njov2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(148, -7)
-scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_2au82")
-
-[node name="Area2D" type="Area2D" parent="."]
+[node name="LEdge" type="Area2D" parent="."]
 script = ExtResource("4_8tn2x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LEdge"]
 position = Vector2(-200, -35)
 shape = SubResource("RectangleShape2D_aq4fw")
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="LEdge" to="LEdge" method="_on_body_entered"]
