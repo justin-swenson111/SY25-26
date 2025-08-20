@@ -12,5 +12,8 @@ func _on_body_entered(body: Node2D) -> void:
 		
 func changeScene():
 	Global.side=side
-	get_tree().change_scene_to_file("res://test2.tscn")
+	if ("res://test2.tscn"==get_tree().current_scene.scene_file_path):
+		get_tree().change_scene_to_file("res://test.tscn")
+	else:
+		get_tree().change_scene_to_file("res://test2.tscn")
 	
