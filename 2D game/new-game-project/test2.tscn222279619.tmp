@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://f60stbn4rgn7"]
 
-[ext_resource type="Script" uid="uid://ctkgivpbs5w4v" path="res://test_2.gd" id="1_sth5e"]
+[ext_resource type="Script" uid="uid://cjoqic754hh52" path="res://scripts/environment/ScreenMovement.gd" id="1_sth5e"]
 [ext_resource type="Texture2D" uid="uid://oruhxbsdhfnj" path="res://Textures/Backdrops/background.png" id="1_vfvc6"]
 [ext_resource type="Script" uid="uid://b2p6lvp2hs4wo" path="res://scripts/environment/Screenmove.gd" id="3_sth5e"]
 

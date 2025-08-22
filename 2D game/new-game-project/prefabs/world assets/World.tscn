@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://4xlktetvpjya"]
+
+[ext_resource type="Texture2D" uid="uid://c8haxuf8f13bx" path="res://Textures/Backdrops/backdrop.png" id="1_cfc00"]
+[ext_resource type="PackedScene" uid="uid://cphy6265716fm" path="res://prefabs/player/Main.tscn" id="2_7hppv"]
+[ext_resource type="PackedScene" uid="uid://b11l680tpu1eo" path="res://prefabs/world assets/boulder1.tscn" id="3_ena3x"]
+[ext_resource type="PackedScene" uid="uid://qixa2eqreat7" path="res://prefabs/world assets/boulder2.tscn" id="4_7hppv"]
+
+[node name="World" type="Node2D"]
+
+[node name="backDrop" type="Sprite2D" parent="."]
+scale = Vector2(100, 100)
+texture = ExtResource("1_cfc00")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_7hppv")]
+position = Vector2(-150, 0)
+
+[node name="Boulder1" parent="." instance=ExtResource("3_ena3x")]
+position = Vector2(11, 86)
+scale = Vector2(3, 3)
+
+[node name="Boulder2" parent="." instance=ExtResource("4_7hppv")]
+position = Vector2(-43, -101)
+scale = Vector2(2.5, 2.5)
