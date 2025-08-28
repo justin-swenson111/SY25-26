@@ -1,13 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://codkmq5oextlc"]
+[gd_scene load_steps=5 format=3 uid="uid://codkmq5oextlc"]
 
 [ext_resource type="Script" uid="uid://cun7ckbriql2l" path="res://scripts/enemy/damage.gd" id="1_qnnvr"]
+[ext_resource type="Script" uid="uid://6eifmed716rw" path="res://scripts/enemy/playerDamage.gd" id="2_svnqc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rsruq"]
 size = Vector2(89, 91)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnnvr"]
+
 [node name="PunchingBag" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
 script = ExtResource("1_qnnvr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rsruq")
+disabled = true
 debug_color = Color(0.998937, 0, 0.128371, 0.42)
+
+[node name="Area2D" type="Area2D" parent="." groups=["EnemyAttack"]]
+script = ExtResource("2_svnqc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_qnnvr")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cphy6265716fm"]
+[gd_scene load_steps=6 format=3 uid="uid://cphy6265716fm"]
 
 [ext_resource type="Script" uid="uid://dbucygy3ayjlk" path="res://scripts/character/mainControls.gd" id="1_r4515"]
 [ext_resource type="Texture2D" uid="uid://s61joq7g8n3g" path="res://Textures/Player Sprites/main.png" id="2_y4h3b"]
@@ -7,7 +7,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2au82"]
 size = Vector2(95, 96)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_r3w1b"]
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_mask = 3
 script = ExtResource("1_r4515")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -23,12 +26,18 @@ shape = SubResource("RectangleShape2D_2au82")
 zoom = Vector2(1.62, 1.62)
 
 [node name="(1_0, 0_0)" type="Area2D" parent="."]
-visible = false
+collision_mask = 3
 script = ExtResource("3_r3w1b")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="(1_0, 0_0)"]
 position = Vector2(15, 0)
 polygon = PackedVector2Array(11, -23, 16, -3, 16, 5, 12, 27, 23, 15, 25, -2, 22, -18)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="(1_0, 0_0)"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_r3w1b")
+target_position = Vector2(30, 0)
+collide_with_areas = true
 
 [node name="(-1_0, 0_0)" type="Area2D" parent="."]
 visible = false
@@ -40,6 +49,7 @@ polygon = PackedVector2Array(-19.0806, -18.7068, -22.1774, -17.2424, -24.7581, -
 
 [node name="(0_0, 1_0)" type="Area2D" parent="."]
 visible = false
+collision_mask = 3
 script = ExtResource("3_r3w1b")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="(0_0, 1_0)"]
