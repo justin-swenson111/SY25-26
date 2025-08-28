@@ -25,3 +25,6 @@ scale = Vector2(2.5, 2.5)
 
 [node name="PunchingBag" parent="." instance=ExtResource("5_ena3x")]
 position = Vector2(45, -20)
+
+[node name="PunchingBag2" parent="." instance=ExtResource("5_ena3x")]
+position = Vector2(-287, 4)
