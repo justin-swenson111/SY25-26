@@ -1,16 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://cphy6265716fm"]
+[gd_scene load_steps=7 format=3 uid="uid://cphy6265716fm"]
 
 [ext_resource type="Script" uid="uid://dbucygy3ayjlk" path="res://scripts/character/mainControls.gd" id="1_r4515"]
 [ext_resource type="Texture2D" uid="uid://s61joq7g8n3g" path="res://Textures/Player Sprites/main.png" id="2_y4h3b"]
-[ext_resource type="Script" uid="uid://fg4r7cjtswyj" path="res://scripts/character/attack.gd" id="3_r3w1b"]
+[ext_resource type="Script" uid="uid://buryb4y1iyp68" path="res://scripts/character/attacArea.gd" id="4_316w4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2au82"]
 size = Vector2(95, 96)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r3w1b"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_yvnwy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_316w4"]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-collision_mask = 3
+collision_layer = 4
 script = ExtResource("1_r4515")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -25,66 +27,82 @@ shape = SubResource("RectangleShape2D_2au82")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.62, 1.62)
 
-[node name="(1_0, 0_0)" type="Area2D" parent="."]
-collision_mask = 3
-script = ExtResource("3_r3w1b")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="(1_0, 0_0)"]
-position = Vector2(15, 0)
-polygon = PackedVector2Array(11, -23, 16, -3, 16, 5, 12, 27, 23, 15, 25, -2, 22, -18)
-
-[node name="ShapeCast2D" type="ShapeCast2D" parent="(1_0, 0_0)"]
+[node name="(1_0, 0_0)" type="ShapeCast2D" parent="."]
+visible = false
+position = Vector2(45, -25)
 scale = Vector2(2, 2)
-shape = SubResource("CircleShape2D_r3w1b")
-target_position = Vector2(30, 0)
+shape = SubResource("CircleShape2D_yvnwy")
+target_position = Vector2(0, 25)
+collision_mask = 0
 collide_with_areas = true
+script = ExtResource("4_316w4")
 
-[node name="(-1_0, 0_0)" type="Area2D" parent="."]
+[node name="(-1_0, 0_0)" type="ShapeCast2D" parent="."]
 visible = false
+position = Vector2(-45, -25)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_316w4")
+target_position = Vector2(0, 25)
+collision_mask = 0
+collide_with_areas = true
+script = ExtResource("4_316w4")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="(-1_0, 0_0)"]
-position = Vector2(10.9688, 1.54861)
-scale = Vector2(1.9375, 1.36574)
-polygon = PackedVector2Array(-19.0806, -18.7068, -22.1774, -17.2424, -24.7581, -6.99152, -24.7581, 1.79492, -23.2097, 18.6356, -19.5968, 14.9746, -20.629, 3.99153, -21.1452, -5.52712)
-
-[node name="(0_0, 1_0)" type="Area2D" parent="."]
+[node name="(0_0, 1_0)" type="ShapeCast2D" parent="."]
 visible = false
-collision_mask = 3
-script = ExtResource("3_r3w1b")
+position = Vector2(25, 45)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_yvnwy")
+target_position = Vector2(-25, 0)
+collision_mask = 0
+collide_with_areas = true
+script = ExtResource("4_316w4")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="(0_0, 1_0)"]
-polygon = PackedVector2Array(-22, 30, -25, 35, -22, 42, -6, 45, 12, 45, 28, 39, 26, 35, 22, 29, 14, 34, -1, 36, -10, 36)
-
-[node name="(0_0, -1_0)" type="Area2D" parent="."]
+[node name="(0_707107, 0_707107)" type="ShapeCast2D" parent="."]
 visible = false
+position = Vector2(0, 35)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_yvnwy")
+target_position = Vector2(20, -20)
+collision_mask = 0
+collide_with_areas = true
+script = ExtResource("4_316w4")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="(0_0, -1_0)"]
-polygon = PackedVector2Array(-24, -26, -27, -30, -25, -35, -19, -38, -6, -42, 9, -43, 20, -38, 25, -31, 23, -26, 17, -30, -1, -35, -8, -33)
-
-[node name="(-0_707107, 0_707107)" type="Area2D" parent="."]
+[node name="(-0_707107, -0_707107)" type="ShapeCast2D" parent="."]
 visible = false
+position = Vector2(-45, 0)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_yvnwy")
+target_position = Vector2(20, -20)
+collision_mask = 0
+collide_with_areas = true
+script = ExtResource("4_316w4")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="(-0_707107, 0_707107)"]
-polygon = PackedVector2Array(-16, 31, -11, 40, -14, 46, -28, 49, -40, 38, -48, 29, -49, 18, -38, 9, -33, 21, -31, 28)
-
-[node name="(-0_707107, -0_707107)" type="Area2D" parent="."]
+[node name="(0_707107, -0_707107)" type="ShapeCast2D" parent="."]
 visible = false
+position = Vector2(45, 0)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_yvnwy")
+target_position = Vector2(-20, -20)
+collision_mask = 0
+collide_with_areas = true
+script = ExtResource("4_316w4")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="(-0_707107, -0_707107)"]
-polygon = PackedVector2Array(-28, -23, -35, -10, -42, -24, -40, -33, -34, -41, -25, -44, -12, -42, -18, -35, -26, -29)
-
-[node name="(0_707107, -0_707107)" type="Area2D" parent="."]
+[node name="(-0_707107, 0_707107)" type="ShapeCast2D" parent="."]
 visible = false
+position = Vector2(-15, 45)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_yvnwy")
+target_position = Vector2(-15, -25)
+collision_mask = 0
+collide_with_areas = true
+script = ExtResource("4_316w4")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="(0_707107, -0_707107)"]
-position = Vector2(-3, -3)
-polygon = PackedVector2Array(19, -28, 18, -36, 34, -41, 45, -37, 53, -25, 53, -14, 41, -13, 36, -22)
-
-[node name="(0_707107, 0_707107)" type="Area2D" parent="."]
+[node name="(0_0, -1_0)" type="ShapeCast2D" parent="."]
 visible = false
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="(0_707107, 0_707107)"]
-polygon = PackedVector2Array(31, 15, 38, 16, 43, 19, 44, 31, 38, 42, 19, 51, 15, 44, 17, 35, 28, 29)
-
-[connection signal="body_entered" from="(1_0, 0_0)" to="(1_0, 0_0)" method="_on_body_entered"]
-[connection signal="body_entered" from="(0_0, 1_0)" to="(0_0, 1_0)" method="_on_body_entered"]
+position = Vector2(25, -45)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_yvnwy")
+target_position = Vector2(-25, 0)
+collision_mask = 0
+collide_with_areas = true
+script = ExtResource("4_316w4")

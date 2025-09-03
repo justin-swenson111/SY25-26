@@ -15,4 +15,12 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("attack"):
 		var hurt = get_node(str(dir).replace(".","_"))
 		hurt.visible=true
+		hurt.collision_mask |= (1 << 1)
+		await get_tree().create_timer(0.25).timeout
+		stopAttack(hurt)
+		
+func stopAttack(hurt):
+	hurt.visible=false
+	hurt.collision_mask &= ~(1 << 1)
+
 		
