@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyo86dr7mebov"]
+
+[ext_resource type="Texture2D" uid="uid://bcntu72bnguhv" path="res://Textures/Backdrops/dungeon backdrop.jpg" id="1_uhnwm"]
+
+[node name="Dungeon" type="Node2D"]
+
+[node name="backDrop" type="Sprite2D" parent="."]
+scale = Vector2(100, 100)
+texture = ExtResource("1_uhnwm")

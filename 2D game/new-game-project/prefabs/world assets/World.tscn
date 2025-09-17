@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://4xlktetvpjya"]
+[gd_scene load_steps=8 format=3 uid="uid://4xlktetvpjya"]
 
 [ext_resource type="Texture2D" uid="uid://c8haxuf8f13bx" path="res://Textures/Backdrops/backdrop.png" id="1_cfc00"]
 [ext_resource type="PackedScene" uid="uid://cphy6265716fm" path="res://prefabs/player/Main.tscn" id="2_7hppv"]
 [ext_resource type="PackedScene" uid="uid://b11l680tpu1eo" path="res://prefabs/world assets/boulder1.tscn" id="3_ena3x"]
 [ext_resource type="PackedScene" uid="uid://qixa2eqreat7" path="res://prefabs/world assets/boulder2.tscn" id="4_7hppv"]
 [ext_resource type="PackedScene" uid="uid://codkmq5oextlc" path="res://prefabs/NPC/punching bag.tscn" id="5_ena3x"]
+[ext_resource type="PackedScene" uid="uid://cdnwvwyg80bs4" path="res://prefabs/NPC/Enemy.tscn" id="6_vvgqr"]
+[ext_resource type="Script" uid="uid://giu6ec3ygbyk" path="res://prefabs/NPC/pathfinding.gd" id="7_048iq"]
 
 [node name="World" type="Node2D"]
 
@@ -12,7 +14,7 @@
 scale = Vector2(100, 100)
 texture = ExtResource("1_cfc00")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_7hppv")]
+[node name="Main" parent="." instance=ExtResource("2_7hppv")]
 position = Vector2(-150, 0)
 
 [node name="Boulder1" parent="." instance=ExtResource("3_ena3x")]
@@ -30,3 +32,7 @@ position = Vector2(45, -20)
 position = Vector2(-287, 4)
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Enemy" parent="." instance=ExtResource("6_vvgqr")]
+position = Vector2(-179, -133)
+script = ExtResource("7_048iq")

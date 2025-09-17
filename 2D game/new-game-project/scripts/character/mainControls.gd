@@ -30,6 +30,10 @@ func stopAttack(hurt):
 	
 func attackDelay():
 	canAttack=true
+	
+func ouchie():
+	Global.health-=1
+	print(Global.health)
 
 
 		
