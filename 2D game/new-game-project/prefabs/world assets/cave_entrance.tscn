@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://4r8cbo68bh6f"]
+
+[ext_resource type="Texture2D" uid="uid://4fqf4gll01bc" path="res://Textures/Environment objects/caveEntrance.png" id="1_f4vna"]
+[ext_resource type="Script" uid="uid://cftibyny05hk0" path="res://prefabs/world assets/enterCave.gd" id="1_xxhiu"]
+
+[node name="caveEntrance" type="Area2D"]
+collision_mask = 5
+script = ExtResource("1_xxhiu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_f4vna")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-21, 4, 5, 4, 5, -1, 3, -3, 2, -5, 1, -8, -2, -10, -3, -13, -6, -13, -9, -14, -11, -12, -13, -12, -20, -4, -21, -2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+visible = false
+polygon = PackedVector2Array(6, 4, 12, 4, 12, -3, 6, -10, 4, -10, 4, -12, 3, -14, 1, -16, -2, -17, -3, -20, -7, -21, -7, -24, -10, -23, -12, -22, -14, -25, -18, -25, -21, -21, -22, -17, -23, -15, -24, -14, -25, -12, -26, -9, -28, -8, -29, -6, -30, -3, -30, 4, -29, 5, -23, 5, -22, 4, -22, -2, -12, -14, -4, -15, 4, -5, 6, -1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

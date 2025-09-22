@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://4xlktetvpjya"]
+[gd_scene load_steps=9 format=3 uid="uid://4xlktetvpjya"]
 
 [ext_resource type="Texture2D" uid="uid://c8haxuf8f13bx" path="res://Textures/Backdrops/backdrop.png" id="1_cfc00"]
 [ext_resource type="PackedScene" uid="uid://cphy6265716fm" path="res://prefabs/player/Main.tscn" id="2_7hppv"]
@@ -7,10 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://codkmq5oextlc" path="res://prefabs/NPC/punching bag.tscn" id="5_ena3x"]
 [ext_resource type="PackedScene" uid="uid://cdnwvwyg80bs4" path="res://prefabs/NPC/Enemy.tscn" id="6_vvgqr"]
 [ext_resource type="Script" uid="uid://giu6ec3ygbyk" path="res://prefabs/NPC/pathfinding.gd" id="7_048iq"]
+[ext_resource type="PackedScene" uid="uid://4r8cbo68bh6f" path="res://prefabs/world assets/cave_entrance.tscn" id="8_708ol"]
 
 [node name="World" type="Node2D"]
 
 [node name="backDrop" type="Sprite2D" parent="."]
+position = Vector2(-65, 39)
 scale = Vector2(100, 100)
 texture = ExtResource("1_cfc00")
 
@@ -26,7 +28,7 @@ position = Vector2(-43, -101)
 scale = Vector2(2.5, 2.5)
 
 [node name="PunchingBag" parent="." instance=ExtResource("5_ena3x")]
-position = Vector2(45, -20)
+position = Vector2(171, -26)
 
 [node name="PunchingBag2" parent="." instance=ExtResource("5_ena3x")]
 position = Vector2(-287, 4)
@@ -36,3 +38,7 @@ position = Vector2(-287, 4)
 [node name="Enemy" parent="." instance=ExtResource("6_vvgqr")]
 position = Vector2(-179, -133)
 script = ExtResource("7_048iq")
+
+[node name="caveEntrance" parent="." instance=ExtResource("8_708ol")]
+position = Vector2(76, -271)
+scale = Vector2(5, 5)

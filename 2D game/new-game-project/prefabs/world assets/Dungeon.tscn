@@ -1,9 +1,107 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyo86dr7mebov"]
+[gd_scene load_steps=9 format=3 uid="uid://cyo86dr7mebov"]
 
 [ext_resource type="Texture2D" uid="uid://bcntu72bnguhv" path="res://Textures/Backdrops/dungeon backdrop.jpg" id="1_uhnwm"]
+[ext_resource type="PackedScene" uid="uid://cphy6265716fm" path="res://prefabs/player/Main.tscn" id="2_dr0b3"]
+[ext_resource type="PackedScene" uid="uid://behtqdam6jb8t" path="res://prefabs/world assets/dungeonResources/bottom_right.tscn" id="3_aciy1"]
+[ext_resource type="PackedScene" uid="uid://cymgg7oi82w71" path="res://prefabs/world assets/dungeonResources/bottom_left.tscn" id="4_voidu"]
+[ext_resource type="PackedScene" uid="uid://dw0qnwytn0s0o" path="res://prefabs/world assets/dungeonResources/top_right.tscn" id="5_gkin6"]
+[ext_resource type="PackedScene" uid="uid://dg6tb8arshmmy" path="res://prefabs/world assets/dungeonResources/top_left.tscn" id="6_tcvfv"]
+[ext_resource type="Script" uid="uid://bxfwmkwwku6ut" path="res://prefabs/world assets/main_exit.gd" id="7_voidu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkin6"]
+size = Vector2(231, 40)
 
 [node name="Dungeon" type="Node2D"]
 
 [node name="backDrop" type="Sprite2D" parent="."]
+position = Vector2(-19, -835)
 scale = Vector2(100, 100)
 texture = ExtResource("1_uhnwm")
+
+[node name="main" parent="." instance=ExtResource("2_dr0b3")]
+
+[node name="Room" type="Sprite2D" parent="."]
+
+[node name="BottomLeft" parent="Room" instance=ExtResource("4_voidu")]
+position = Vector2(-250, 250)
+scale = Vector2(10, 10)
+
+[node name="BottomRight" parent="Room" instance=ExtResource("3_aciy1")]
+position = Vector2(250, 250)
+scale = Vector2(10, 10)
+
+[node name="TopLeft" parent="Room" instance=ExtResource("6_tcvfv")]
+position = Vector2(-250, -250)
+scale = Vector2(10, 10)
+
+[node name="TopRight" parent="Room" instance=ExtResource("5_gkin6")]
+position = Vector2(250, -250)
+scale = Vector2(10, 10)
+
+[node name="Room2" type="Sprite2D" parent="."]
+position = Vector2(500, 0)
+
+[node name="BottomLeft" parent="Room2" instance=ExtResource("4_voidu")]
+position = Vector2(-250, 250)
+scale = Vector2(10, 10)
+
+[node name="BottomRight" parent="Room2" instance=ExtResource("3_aciy1")]
+position = Vector2(250, 250)
+scale = Vector2(10, 10)
+
+[node name="TopLeft" parent="Room2" instance=ExtResource("6_tcvfv")]
+position = Vector2(-250, -250)
+scale = Vector2(10, 10)
+
+[node name="TopRight" parent="Room2" instance=ExtResource("5_gkin6")]
+position = Vector2(250, -250)
+scale = Vector2(10, 10)
+
+[node name="Room3" type="Sprite2D" parent="."]
+position = Vector2(0, -500)
+
+[node name="BottomLeft" parent="Room3" instance=ExtResource("4_voidu")]
+position = Vector2(-250, 250)
+scale = Vector2(10, 10)
+
+[node name="BottomRight" parent="Room3" instance=ExtResource("3_aciy1")]
+position = Vector2(250, 250)
+scale = Vector2(10, 10)
+
+[node name="TopLeft" parent="Room3" instance=ExtResource("6_tcvfv")]
+position = Vector2(-250, -250)
+scale = Vector2(10, 10)
+
+[node name="TopRight" parent="Room3" instance=ExtResource("5_gkin6")]
+position = Vector2(250, -250)
+scale = Vector2(10, 10)
+
+[node name="Room4" type="Sprite2D" parent="."]
+position = Vector2(-500, 0)
+
+[node name="BottomLeft" parent="Room4" instance=ExtResource("4_voidu")]
+position = Vector2(-250, 250)
+scale = Vector2(10, 10)
+
+[node name="BottomRight" parent="Room4" instance=ExtResource("3_aciy1")]
+position = Vector2(250, 250)
+scale = Vector2(10, 10)
+
+[node name="TopLeft" parent="Room4" instance=ExtResource("6_tcvfv")]
+position = Vector2(-250, -250)
+scale = Vector2(10, 10)
+
+[node name="TopRight" parent="Room4" instance=ExtResource("5_gkin6")]
+position = Vector2(250, -250)
+scale = Vector2(10, 10)
+
+[node name="MainExit" type="Area2D" parent="."]
+position = Vector2(0, 230)
+collision_mask = 5
+script = ExtResource("7_voidu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainExit"]
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_gkin6")
+
+[connection signal="body_entered" from="MainExit" to="MainExit" method="_on_body_entered"]

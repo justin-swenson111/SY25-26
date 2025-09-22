@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw0qnwytn0s0o"]
+
+[ext_resource type="Texture2D" uid="uid://cvam22ov126vm" path="res://Textures/dungeonTile/topRight.png" id="1_yroya"]
+
+[node name="TopRight" type="Sprite2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(19, 30)
+polygon = PackedVector2Array(-23, -17, -19, -17, -19, -30, -32, -30, -32, -26, -23, -26)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(19, 30)
+texture = ExtResource("1_yroya")
